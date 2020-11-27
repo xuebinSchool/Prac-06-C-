@@ -17,7 +17,7 @@ namespace DataAccessLayer
         private int _patientID, _postalCode, _contact;
         private string connStr = ConfigurationManager.ConnectionStrings["Prac06.Properties.Settings.dbConnection"].ConnectionString;
 
-        public string PatientName { get => _patientName; set => _patientName = value; }        public Patient(string patientName, string gender, string citizenship, string address, string country, string email, int patientID, int postalCode, int contact)
+        public Patient(string patientName, string gender, string citizenship, string address, string country, string email, int patientID, int postalCode, int contact)
         {
             _patientName = patientName;
             _gender = gender;
@@ -30,7 +30,7 @@ namespace DataAccessLayer
             _contact = contact;
         }
 
-
+        public string PatientName { get => _patientName; set => _patientName = value; }
         public string Gender { get => _gender; set => _gender = value; }
         public string Citizenship { get => _citizenship; set => _citizenship = value; }
         public string Address { get => _address; set => _address = value; }
@@ -72,6 +72,8 @@ namespace DataAccessLayer
         //    get { return _postalCode; }
         //    set { _postalCode = value; }
         //}
+
+
 
 
         public int InsertPatient()
