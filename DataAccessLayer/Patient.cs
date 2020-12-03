@@ -147,6 +147,11 @@ namespace DataAccessLayer
             Contact = contact;
         }
 
+        public Patient()
+        {
+        }
+
+
         //public Patient(string patientName, string gender, string citizenship, string address, string country, string email, int postalCode, int contact)
         //{
         //    PatientName = patientName;
@@ -220,6 +225,42 @@ namespace DataAccessLayer
             conn.Close();
 
             return results;
+        }
+
+        public List<Patient> GetAllPatient()
+        {
+            List<Patient> PatientAll = new List<Patient>();
+            int patId, postal, contact;
+            string patName, gender, citizenship, address, country, email;
+
+            string query = "SELECT * FROM Patient Order By PatientName";
+
+            SqlConnection conn = new SqlConnection(connStr);
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            conn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                patId = int.Parse(dr["PatientID"].ToString());
+                patName = dr["PatientName"].ToString();
+                gender = dr["Gender"].ToString();
+                citizenship = dr["Citizenship"].ToString();
+                address = dr["Address"].ToString();
+                postal = int.Parse(dr["PostalCode"].ToString());
+                country = dr["Country"].ToString();
+                contact = int.Parse(dr["ContactNo"].ToString());
+                email = dr["Email"].ToString();
+
+                PatientAll.Add(new Patient(patName, gender, citizenship, address, country, email, patId, postal, contact));
+            }
+
+            conn.Close();
+            dr.Close();
+            dr.Dispose();
+
+            return PatientAll;
         }
 
 

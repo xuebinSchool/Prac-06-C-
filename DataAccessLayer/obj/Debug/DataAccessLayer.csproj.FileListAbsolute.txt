@@ -9,3 +9,4 @@ D:\HomeeeeeeWork\Prac-06-C-\DataAccessLayer\bin\Debug\DataAccessLayer.dll
 D:\HomeeeeeeWork\Prac-06-C-\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
 D:\HomeeeeeeWork\Prac-06-C-\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 D:\HomeeeeeeWork\Prac-06-C-\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+D:\HomeeeeeeWork\Prac-06-C-\DataAccessLayer\obj\Debug\DataAccessLayer.csprojResolveAssemblyReference.cache
