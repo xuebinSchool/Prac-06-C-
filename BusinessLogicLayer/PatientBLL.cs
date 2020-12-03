@@ -79,5 +79,15 @@ namespace BusinessLogicLayer
             return msg;
         }
 
+        public List<Patient> GetAllPatient()
+        {
+            List<Patient> allPatients = new List<Patient>();
+            Patient patients = new Patient();
+
+            allPatients = patients.GetAllPatient();
+
+            return allPatients;
+        }
+
     }
 }
