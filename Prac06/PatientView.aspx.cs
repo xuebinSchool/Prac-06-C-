@@ -19,5 +19,24 @@ namespace Prac06
             gvPatient.DataSource = patients;
             gvPatient.DataBind();
         }
+
+        protected void gvPatient_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            //Auto generate with Event handler at properties
+
+            int rowNum = int.Parse(e.CommandArgument.ToString());
+
+            GridViewRow grRow = gvPatient.Rows[rowNum];
+            string patientID = grRow.Cells[0].Text;
+
+            if(e.CommandName == "Select")
+            {
+                Response.Redirect(String.Format("PatientDetails.aspx?id={0}", patientID));
+            }
+            else if (e.CommandName == "Update")
+            {
+                Response.Redirect(String.Format("PatientUpdate.aspx?id={0}", patientID));
+            }
+        }
     }
 }

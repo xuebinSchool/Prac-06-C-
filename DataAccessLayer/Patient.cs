@@ -152,55 +152,6 @@ namespace DataAccessLayer
         }
 
 
-        //public Patient(string patientName, string gender, string citizenship, string address, string country, string email, int postalCode, int contact)
-        //{
-        //    PatientName = patientName;
-        //    Gender = gender;
-        //    Citizenship = citizenship;
-        //    Address = address;
-        //    Country = country;
-        //    Email = email;
-        //    PostalCode = postalCode;
-        //    Contact = contact;
-        //}
-
-
-
-
-        //public int patientid
-        //{
-        //    get { return _patientID; }
-        //    set { _patientID = value; }
-        //}
-        //public string patientname
-        //{
-        //    get { return _patientName; }
-        //    set { _patientName = value; }
-        //}
-        //public string gender
-        //{
-        //    get { return _gender; }
-        //    set { _gender = value; }
-        //}
-        //public string citizenship
-        //{
-        //    get { return _citizenship; }
-        //    set { _citizenship = value; }
-        //}
-        //public string address
-        //{
-        //    get { return _address; }
-        //    set { _address = value; }
-        //}
-        //public int postalcode
-        //{
-        //    get { return _postalCode; }
-        //    set { _postalCode = value; }
-        //}
-
-
-
-
         public int InsertPatient()
         {
             int results = 0;
@@ -263,6 +214,72 @@ namespace DataAccessLayer
             return PatientAll;
         }
 
+        public int UpdatePatient()
+        {
+            string query = "UPDATE Patient SET PatientName = @patName, Gender = @gender , Citizenship = @citizenship,  " +
+                "Address = @address, PostalCode = @postal, Country = @country, ContactNo = @contact, Email = @email WHERE PatientID = @Id";
+
+            int numofRows = 0;
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", PatientID.ToString());
+                    cmd.Parameters.AddWithValue("@patName", PatientName);
+                    cmd.Parameters.AddWithValue("@gender", Gender);
+                    cmd.Parameters.AddWithValue("@citizenship", Citizenship);
+                    cmd.Parameters.AddWithValue("@address", Address);
+                    cmd.Parameters.AddWithValue("@postal", PostalCode.ToString());
+                    cmd.Parameters.AddWithValue("@country", Country);
+                    cmd.Parameters.AddWithValue("@contact", Contact.ToString());
+                    cmd.Parameters.AddWithValue("@email", Email);
+
+
+                    conn.Open();
+                    numofRows = cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+            }
+            return numofRows;
+        }
+
+        public Patient GetPatient(string patientID)
+        {
+            Patient patient = null;
+            string query = "SELECT * FROM Patient WHERE PatientID = @ID";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", patientID);
+
+                    conn.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        string patName = dr["PatientName"].ToString();
+                        string gender = dr["Gender"].ToString();
+                        string citizenship = dr["Citizenship"].ToString();
+                        string address = dr["Address"].ToString();
+                        int postal = int.Parse(dr["PostalCode"].ToString());
+                        string country = dr["Country"].ToString();
+                        int contact = int.Parse(dr["ContactNo"].ToString());
+                        string email = dr["Email"].ToString();
+
+                        patient = new Patient(patName,gender,citizenship,address,country,email,int.Parse(patientID),postal,contact);
+                    }
+
+                    conn.Close();
+                    dr.Close();
+                    dr.Dispose();
+                }
+            }
+
+            return patient;
+        }
 
     }
 }

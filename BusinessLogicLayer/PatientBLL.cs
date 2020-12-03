@@ -89,5 +89,46 @@ namespace BusinessLogicLayer
             return allPatients;
         }
 
+        private string ValidateInput(string Id, string name, string gender, string citizenship, string address, string postalCode, string country, string contact, string email)
+        {
+            //StringBuilder messageBuilder = new StringBuilder();
+            //IsNullOrEmpty and check length
+            //messageBuilder.Append("Text more text <br/>")
+            //return messageBuilder.ToString();
+
+            return null;
+        }
+        
+        public string UpdatePatient(string Id, string name, string gender, string citizenship, string address, string postalCode, string country, string contact, string email)
+        {
+            string returnString;
+
+            //Validate here with ValidateInput()
+            //if ValidateInput() = message.Length == 0 == no errors on ValidateInput()
+            int iID = int.Parse(Id);
+            int iPostal = int.Parse(postalCode);
+            int iContact = int.Parse(contact);
+
+            Patient updateValues = new Patient(name, gender, citizenship, address, country, email, iID, iPostal, iContact);
+
+           int results = updateValues.UpdatePatient();
+
+            if(results == 1)
+            {
+                returnString = "Patient is updated";
+            }
+            else
+            {
+                returnString = "Error";
+            }
+
+            return returnString;
+        }
+        
+        public Patient GetPatient(string patientID)
+        {
+            Patient singlePatient = new Patient();
+            return singlePatient.GetPatient(patientID);
+        } 
     }
 }
