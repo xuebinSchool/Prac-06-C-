@@ -17,28 +17,148 @@ namespace DataAccessLayer
         private int _patientID, _postalCode, _contact;
         private string connStr = ConfigurationManager.ConnectionStrings["Prac06.Properties.Settings.dbConnection"].ConnectionString;
 
-        public Patient(string patientName, string gender, string citizenship, string address, string country, string email, int patientID, int postalCode, int contact)
+        public string PatientName
         {
-            _patientName = patientName;
-            _gender = gender;
-            _citizenship = citizenship;
-            _address = address;
-            _country = country;
-            _email = email;
-            _patientID = patientID;
-            _postalCode = postalCode;
-            _contact = contact;
+            get
+            {
+                return _patientName;
+            }
+
+            set
+            {
+                _patientName = value;
+            }
         }
 
-        public string PatientName { get => _patientName; set => _patientName = value; }
-        public string Gender { get => _gender; set => _gender = value; }
-        public string Citizenship { get => _citizenship; set => _citizenship = value; }
-        public string Address { get => _address; set => _address = value; }
-        public string Country { get => _country; set => _country = value; }
-        public string Email { get => _email; set => _email = value; }
-        public int PatientID { get => _patientID; set => _patientID = value; }
-        public int PostalCode { get => _postalCode; set => _postalCode = value; }
-        public int Contact { get => _contact; set => _contact = value; }
+        public string Gender
+        {
+            get
+            {
+                return _gender;
+            }
+
+            set
+            {
+                _gender = value;
+            }
+        }
+
+        public string Citizenship
+        {
+            get
+            {
+                return _citizenship;
+            }
+
+            set
+            {
+                _citizenship = value;
+            }
+        }
+
+        public string Address
+        {
+            get
+            {
+                return _address;
+            }
+
+            set
+            {
+                _address = value;
+            }
+        }
+
+        public string Country
+        {
+            get
+            {
+                return _country;
+            }
+
+            set
+            {
+                _country = value;
+            }
+        }
+
+        public string Email
+        {
+            get
+            {
+                return _email;
+            }
+
+            set
+            {
+                _email = value;
+            }
+        }
+
+        public int PatientID
+        {
+            get
+            {
+                return _patientID;
+            }
+
+            set
+            {
+                _patientID = value;
+            }
+        }
+
+        public int PostalCode
+        {
+            get
+            {
+                return _postalCode;
+            }
+
+            set
+            {
+                _postalCode = value;
+            }
+        }
+
+        public int Contact
+        {
+            get
+            {
+                return _contact;
+            }
+
+            set
+            {
+                _contact = value;
+            }
+        }
+
+        public Patient(string patientName, string gender, string citizenship, string address, string country, string email, int patientID, int postalCode, int contact)
+        {
+            PatientName = patientName;
+            Gender = gender;
+            Citizenship = citizenship;
+            Address = address;
+            Country = country;
+            Email = email;
+            PatientID = patientID;
+            PostalCode = postalCode;
+            Contact = contact;
+        }
+
+        //public Patient(string patientName, string gender, string citizenship, string address, string country, string email, int postalCode, int contact)
+        //{
+        //    PatientName = patientName;
+        //    Gender = gender;
+        //    Citizenship = citizenship;
+        //    Address = address;
+        //    Country = country;
+        //    Email = email;
+        //    PostalCode = postalCode;
+        //    Contact = contact;
+        //}
+
 
 
 
@@ -80,18 +200,19 @@ namespace DataAccessLayer
         {
             int results = 0;
             string queryString = "INSERT INTO Patient(PatientID, PatientName, Gender, Citizenship, Address, PostalCode, Country, ContactNo, Email)" +
-                "values (@ID, @Name, @Gender, @Citizenship, @Address, @Postal, @Country, @Contact, @Email";
+                "values (@ID, @Name, @Gender, @Citizenship, @Address, @Postal, @Country, @Contact, @Email)";
 
             SqlConnection conn = new SqlConnection(connStr);
             SqlCommand cmd = new SqlCommand(queryString, conn);
 
-            cmd.Parameters.AddWithValue("@ID", PatientID);
+            cmd.Parameters.AddWithValue("@ID", PatientID.ToString());
             cmd.Parameters.AddWithValue("@Name", PatientName);
             cmd.Parameters.AddWithValue("@Gender", Gender);
             cmd.Parameters.AddWithValue("@Citizenship", Citizenship);
             cmd.Parameters.AddWithValue("@Address", Address);
-            cmd.Parameters.AddWithValue("@Postal", PostalCode);
+            cmd.Parameters.AddWithValue("@Postal", PostalCode.ToString());
             cmd.Parameters.AddWithValue("@Country", Country);
+            cmd.Parameters.AddWithValue("@Contact", Contact.ToString());
             cmd.Parameters.AddWithValue("@Email", Email);
 
             conn.Open();

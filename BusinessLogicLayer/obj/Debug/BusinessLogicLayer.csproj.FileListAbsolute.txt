@@ -1,0 +1,7 @@
+D:\HomeeeeeeWork\Prac-06-C-\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.dll
+D:\HomeeeeeeWork\Prac-06-C-\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.pdb
+D:\HomeeeeeeWork\Prac-06-C-\BusinessLogicLayer\bin\Debug\DataAccessLayer.dll
+D:\HomeeeeeeWork\Prac-06-C-\BusinessLogicLayer\bin\Debug\DataAccessLayer.pdb
+D:\HomeeeeeeWork\Prac-06-C-\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csprojResolveAssemblyReference.cache
+D:\HomeeeeeeWork\Prac-06-C-\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.dll
+D:\HomeeeeeeWork\Prac-06-C-\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.pdb

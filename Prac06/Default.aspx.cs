@@ -15,5 +15,13 @@ namespace Prac06
         {
 
         }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+           PatientBLL prodBLL = new PatientBLL();
+           string msg = prodBLL.PatientInsert(txtID.Text, txtName.Text, rblGender.Text, ddlCitizenship.Text, txtAddress.Text, txtPostal.Text, ddlCountry.Text, txtContact.Text, txtEmail.Text);
+
+            lblMessage.Text = msg;
+        }
     }
 }
